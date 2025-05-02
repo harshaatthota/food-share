@@ -1,0 +1,187 @@
+CREATE DATABASE food_share;
+USE food_share;
+
+-- Users Table (Common for Restaurant, Volunteer, Admin)
+CREATE TABLE users (
+    unique_id VARCHAR(255) PRIMARY KEY,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('Restaurant', 'Volunteer', 'Admin') NOT NULL,
+    INDEX(email)  -- Added index for faster email lookups
+) ENGINE=InnoDB;
+
+-- Restaurant Profiles
+CREATE TABLE restaurant_profiles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id VARCHAR(255) UNIQUE NOT NULL,
+    restaurant_name VARCHAR(255) NOT NULL,
+    owner_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phone_number VARCHAR(20) NOT NULL,
+    address TEXT NOT NULL,
+    landmark TEXT,
+    FOREIGN KEY (user_id) REFERENCES users(unique_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- Volunteer Profiles
+CREATE TABLE volunteer_profiles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id VARCHAR(255) UNIQUE NOT NULL,
+    volunteer_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    mobile VARCHAR(20) NOT NULL,
+    occupation VARCHAR(50),
+    experience TEXT,
+    address TEXT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(unique_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- Food Donations
+CREATE TABLE food_donations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id VARCHAR(255) NOT NULL,
+    restaurant_name VARCHAR(255) NOT NULL,
+    owner_name VARCHAR(255) NOT NULL,
+    location TEXT NOT NULL,
+    rice_item VARCHAR(255),
+    curry_item VARCHAR(255),
+    other_item VARCHAR(255),
+    serves INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(unique_id) ON DELETE CASCADE,
+    INDEX(restaurant_name)  -- Index for restaurant_name to speed up searches
+) ENGINE=InnoDB;
+
+-- Bookings Table (With OTP)
+CREATE TABLE bookings (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    food_id INT NOT NULL,
+    volunteer_id VARCHAR(255) NOT NULL,
+    volunteer_name VARCHAR(255) NOT NULL,
+    restaurant_name VARCHAR(255) NOT NULL,
+    people_served INT NOT NULL,
+    otp VARCHAR(10) NOT NULL,
+    status ENUM('Pending', 'Collected', 'Cancelled') DEFAULT 'Pending',
+    FOREIGN KEY (food_id) REFERENCES food_donations(id) ON DELETE CASCADE,
+    FOREIGN KEY (volunteer_id) REFERENCES users(unique_id) ON DELETE CASCADE,
+    INDEX(status)  -- Index for status to filter bookings
+) ENGINE=InnoDB;
+
+-- Alter Table to add a boolean for whether food was taken by volunteer
+ALTER TABLE food_donations ADD COLUMN food_taken_by_volunteer BOOLEAN DEFAULT FALSE;
+
+
+
+-- Add points column for restaurants
+ALTER TABLE restaurant_profiles
+ADD COLUMN points INT DEFAULT 0;
+
+-- Add points column for volunteers
+ALTER TABLE volunteer_profiles
+ADD COLUMN points INT DEFAULT 0;
+
+
+ALTER TABLE bookings ADD COLUMN points_awarded BOOLEAN DEFAULT 0;
+
+
+-- Remove the points column from restaurant_profiles
+ALTER TABLE restaurant_profiles
+DROP COLUMN points;
+
+-- Remove the points column from volunteer_profiles
+ALTER TABLE volunteer_profiles
+DROP COLUMN points;
+
+-- Remove the points_awarded column from bookings
+ALTER TABLE bookings
+DROP COLUMN points_awarded;
+
+
+ALTER TABLE users
+ADD COLUMN blocked BOOLEAN DEFAULT FALSE;
+
+
+CREATE TABLE admin_profiles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    phone_number VARCHAR(20) NOT NULL,
+    email_address VARCHAR(255) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(unique_id) ON DELETE CASCADE
+);
+
+CREATE TABLE contributions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    amount DECIMAL(10, 2) NOT NULL,
+    payment_method ENUM('debit_card', 'credit_card', 'upi') NOT NULL,
+    card_number VARCHAR(16),
+    donated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+ALTER TABLE volunteer_profiles 
+ADD COLUMN profile_pic VARCHAR(255) DEFAULT 'default_profile.jpg',
+ADD COLUMN gallery TEXT NULL;
+
+CREATE TABLE volunteer_posts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id VARCHAR(255) NOT NULL,
+    media_path VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES volunteer_profiles(user_id) ON DELETE CASCADE
+);
+
+
+ALTER TABLE restaurant_profiles 
+ADD COLUMN profile_pic VARCHAR(255) DEFAULT 'default_profile.jpg',
+ADD COLUMN gallery TEXT NULL;
+
+
+CREATE TABLE restaurant_posts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id VARCHAR(255) NOT NULL,
+    media_path VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES restaurant_profiles(user_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+ALTER TABLE contributions MODIFY COLUMN card_number VARCHAR(255) NULL;
+ALTER TABLE contributions MAX_ROWS = 100000000000;
+
+CREATE TABLE admin_posts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id VARCHAR(255) NOT NULL,
+    media_path VARCHAR(255) NOT NULL,
+    media_type ENUM('image', 'video') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(unique_id) ON DELETE CASCADE
+);
+
+ALTER TABLE admin_profiles
+ADD COLUMN profile_pic VARCHAR(255) DEFAULT 'default_profile.jpg';
+
+
+
+ALTER TABLE users ADD COLUMN complaint_count INT DEFAULT 0;
+
+
+
+CREATE TABLE complaints (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    complainant_type ENUM('Volunteer', 'Restaurant', 'Individual') NOT NULL,
+    complainant_id INT NOT NULL,
+    against_type ENUM('Volunteer', 'Restaurant', 'Individual') NOT NULL,
+    against_id INT NOT NULL,
+    description TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+ALTER TABLE complaints 
+MODIFY COLUMN complainant_id VARCHAR(5) NOT NULL,
+MODIFY COLUMN against_id VARCHAR(5) NOT NULL;
+
+
+ALTER TABLE bookings ADD created_at DATETIME DEFAULT CURRENT_TIMESTAMP;
+
+

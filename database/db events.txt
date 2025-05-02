@@ -1,0 +1,37 @@
+-- Enable event scheduler if it's not already enabled
+SET GLOBAL event_scheduler = ON;
+
+-- Create event for deleting unbooked food donations
+DELIMITER //
+
+CREATE EVENT delete_unbooked_food_donations
+ON SCHEDULE EVERY 1 HOUR
+DO
+BEGIN
+    -- Delete food donations with no bookings (no corresponding records in the bookings table)
+    DELETE FROM food_donations
+    WHERE id NOT IN (SELECT DISTINCT food_id FROM bookings)
+    AND created_at < NOW() - INTERVAL 2 HOUR;  -- Assuming donations older than 2 hours are eligible for deletion
+END //
+
+-- Create event for deleting leftover food after partial bookings
+CREATE EVENT delete_leftover_food
+ON SCHEDULE EVERY 1 HOUR
+DO
+BEGIN
+    -- For each food donation, check if the number of people served is less than the number of plates available
+    UPDATE food_donations fd
+    JOIN (
+        SELECT b.food_id, SUM(b.people_served) AS booked_plates
+        FROM bookings b
+        GROUP BY b.food_id
+    ) AS booked ON fd.id = booked.food_id
+    SET fd.serves = fd.serves - booked.booked_plates
+    WHERE fd.serves > booked.booked_plates;
+
+    -- Now delete food donations with remaining plates (serves)
+    DELETE FROM food_donations
+    WHERE serves <= 0 AND created_at < NOW() - INTERVAL 2 HOUR;
+END //
+
+DELIMITER ;
