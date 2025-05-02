@@ -1,0 +1,117 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+
+:root {
+    --primary-bg: #f5e9d7; /* Warm, soft background */
+    --text-color: #121212;
+    --overlay-bg: rgba(255, 255, 255, 0.9);
+    --accent-color: #d62929; /* Red accent */
+    --border-color: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Body Styling */
+body {
+    background: var(--primary-bg);
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+/* Navbar */
+.custom-navbar {
+    background: transparent;
+    padding: 20px 50px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.custom-navbar .navbar-brand {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.custom-navbar .nav-link {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-color);
+    margin: 0 15px;
+    position: relative;
+    transition: 0.3s ease-in-out;
+}
+
+.custom-navbar .nav-link:hover {
+    color: var(--accent-color);
+}
+
+.custom-navbar .nav-link::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    transition: width 0.3s;
+    margin-top: 5px;
+}
+
+.custom-navbar .nav-link:hover::after {
+    width: 100%;
+}
+
+/* Header Section */
+.header-section {
+    background: var(--overlay-bg);
+    padding: 60px 0;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-section h1 {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.header-section p {
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-top: 10px;
+}
+
+/* Content Sections */
+.content-section {
+    padding: 60px 0;
+    text-align: justify;
+}
+
+.content-section .container {
+    max-width: 900px;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.content-section p {
+    font-size: 1.2rem;
+    color: #333;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+/* Footer */
+.footer {
+    background: var(--text-color);
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 1rem;
+}

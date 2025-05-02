@@ -1,0 +1,455 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
+:root {
+    --primary-bg: #d6eaff; /* Light blue background */
+    --text-color: #121212;
+    --overlay-bg: rgba(255, 255, 255, 0.8);
+    --accent-color: #0072ff; /* Blue accent */
+    --accent-hover: #005bb5;
+    --border-color: rgba(0, 0, 0, 0.1);
+    --glassmorphism: rgba(255, 255, 255, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Body Styling */
+body {
+    background: var(--primary-bg) !important; /* Ensuring light blue background */
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+/* Navbar */
+.custom-navbar {
+    background: transparent;
+    padding: 20px 50px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.custom-navbar .navbar-brand {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.custom-navbar .nav-link {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-color);
+    margin: 0 15px;
+    position: relative;
+    transition: 0.3s ease-in-out;
+}
+
+.custom-navbar .nav-link:hover {
+    color: var(--accent-color);
+}
+
+.custom-navbar .nav-link::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    transition: width 0.3s;
+    margin-top: 5px;
+}
+
+.custom-navbar .nav-link:hover::after {
+    width: 100%;
+}
+
+html {
+    overflow-y: scroll;
+}
+
+
+/* Cards */
+.card {
+    background: rgba(255, 255, 255, 0.3);
+    padding: 40px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 1200px;
+    backdrop-filter: blur(15px);
+    margin-bottom: 20px;
+    color: #000;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.card h2 {
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* Available Donations Container */
+#available-donations-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Donation Cards */
+.donation-item {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 25px;
+    border-radius: 15px;
+    width: calc(50% - 10px);
+    max-width: 550px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.donation-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.donation-item p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.donation-item strong {
+    font-weight: 700;
+}
+
+/* Buttons */
+.book-food-btn {
+    background: linear-gradient(135deg, #0072ff, #00c6ff);
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.book-food-btn:hover {
+    background: linear-gradient(135deg, #0056d2, #0095d9);
+    transform: translateY(-3px);
+}
+
+.confirm-btn, .cancel-btn {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 48%;
+    transition: all 0.3s ease;
+}
+
+
+.confirm-btn {
+background: linear-gradient(135deg, #28a745, #60d394);
+color: white;
+}
+
+.confirm-btn:hover {
+background: linear-gradient(135deg, #1c7c36, #45b678);
+}
+
+.cancel-btn {
+background: linear-gradient(135deg, #ff4b5c, #ff6b7d);
+color: white;
+}
+
+.cancel-btn:hover {
+background: linear-gradient(135deg, #d73546, #ff4f64);
+}
+
+.button-group {
+display: flex;
+justify-content: space-between;
+margin-top: 15px;
+}
+
+/* Booking Confirmation Box */
+.confirm-box {
+background: rgba(255, 255, 255, 0.9);
+border: 1px solid #ddd;
+padding: 20px;
+border-radius: 15px;
+margin-top: 20px;
+}
+
+.confirm-box label {
+font-weight: 600;
+margin-bottom: 10px;
+display: block;
+}
+
+.confirm-box input[type="number"] {
+padding: 10px;
+font-size: 1rem;
+border-radius: 10px;
+border: 1px solid #ccc;
+width: 100%;
+margin-bottom: 15px;
+}
+
+/* Food List */
+#food-list {
+background: rgba(255, 255, 255, 0.25);
+padding: 40px;
+border-radius: 20px;
+width: 100%;
+max-width: 1200px;
+backdrop-filter: blur(15px);
+box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+margin-top: 30px;
+}
+
+/* Hidden elements */
+.hidden {
+display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+.donation-item {
+width: 100%; /* Full width cards on small screens */
+}
+
+.navbar h1 {
+font-size: 2rem;
+}
+
+.menu-btn {
+font-size: 1.8rem;
+}
+
+/* Updated Button Styles */
+.confirm-btn, .cancel-btn, .book-food-btn {
+font-size: 1rem;
+padding: 14px 25px;
+border-radius: 30px;
+font-weight: 600;
+cursor: pointer;
+border: none;
+text-align: center;
+transition: all 0.3s ease, box-shadow 0.3s ease;
+display: inline-block;
+letter-spacing: 1px;
+}
+
+/* Confirm Button */
+.confirm-btn {
+background: linear-gradient(135deg, #28a745, #60d394);
+color: white;
+box-shadow: 0 6px 15px rgba(40, 167, 69, 0.3);
+}
+
+.confirm-btn:hover {
+background: linear-gradient(135deg, #1c7c36, #45b678);
+transform: translateY(-3px);
+box-shadow: 0 8px 18px rgba(40, 167, 69, 0.4);
+}
+
+.confirm-btn:active {
+transform: translateY(0);
+box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+}
+
+/* Cancel Button */
+.cancel-btn {
+background: linear-gradient(135deg, #ff4b5c, #ff6b7d);
+color: white;
+box-shadow: 0 6px 15px rgba(255, 75, 92, 0.3);
+}
+
+.cancel-btn:hover {
+background: linear-gradient(135deg, #d73546, #ff4f64);
+transform: translateY(-3px);
+box-shadow: 0 8px 18px rgba(255, 75, 92, 0.4);
+}
+
+.cancel-btn:active {
+transform: translateY(0);
+box-shadow: 0 4px 12px rgba(255, 75, 92, 0.2);
+}
+
+/* Book Food Button */
+.book-food-btn {
+background: linear-gradient(135deg, #0072ff, #00c6ff);
+color: white;
+box-shadow: 0 6px 15px rgba(0, 114, 255, 0.3);
+}
+
+.book-food-btn:hover {
+background: linear-gradient(135deg, #0056d2, #0095d9);
+transform: translateY(-3px);
+box-shadow: 0 8px 18px rgba(0, 114, 255, 0.4);
+}
+
+.book-food-btn:active {
+transform: translateY(0);
+box-shadow: 0 4px 12px rgba(0, 114, 255, 0.2);
+}
+}
+
+@media (max-width: 480px) {
+body {
+padding: 30px 10px;
+}
+
+.navbar {
+padding: 15px;
+}
+
+.navbar h1 {
+font-size: 1.8rem;
+}
+
+.card {
+padding: 20px;
+}
+}
+/* Mission Container */
+.mission-container {
+    background: rgba(255, 255, 255, 0.25);
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    color: #000;
+    width: 100%;
+    max-width: 1200px; /* Matches food-list max-width */
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Mission Text */
+#mission-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    max-height: calc(1.6rem * 2); /* Ensure height matches 2 lines */
+}
+
+/* Expanded Mission Text */
+#mission-text.expanded {
+    display: block; /* Remove the multi-line clamp */
+    max-height: none; /* Remove height restriction */
+    overflow: visible; /* Show full content */
+}
+
+/* Learn More Button */
+.learn-more-btn {
+background: linear-gradient(135deg, #0072ff, #00c6ff);
+color: white;
+padding: 10px 25px;
+border: none;
+border-radius: 30px;
+font-size: 1rem;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.3s ease;
+}
+
+.learn-more-btn:hover {
+background: linear-gradient(135deg, #0056d2, #0095d9);
+transform: translateY(-3px);
+}
+
+/* Thank You Message Styling */
+.thank-you-container {
+width: 100%;
+max-width: 1200px;
+margin: 30px auto;
+padding: 20px;
+background: rgba(255, 255, 255, 0.3);
+border-radius: 15px;
+backdrop-filter: blur(10px);
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+color: #000;
+text-align: center;
+}
+
+.thank-you-text {
+font-size: 1.2rem;
+line-height: 1.6;
+font-weight: 600;
+}
+.search-bar-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* ⬅️ This aligns it to the right */
+    gap: 8px;
+    padding: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    background: none;
+    margin-bottom: 10px;
+}
+
+
+
+.search-bar-container input[type="text"] {
+    width: 280px; /* Increased from 180px */
+    height: 38px;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s ease;
+}
+
+
+.search-bar-container input[type="text"]:focus {
+    outline: none;
+    background: #fff;
+    box-shadow: 0 0 5px rgba(30, 144, 255, 0.4);
+}
+
+.search-btn {
+    height: 38px;
+    padding: 6px 14px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #1e90ff, #00bcd4);
+    font-family: 'Montserrat', sans-serif;
+    transition: background 0.3s ease;
+}
+
+.search-btn:hover {
+    background: linear-gradient(135deg, #00bcd4, #1e90ff);
+    cursor: pointer;
+}
+#available-donations-container {
+    max-height: 400px; /* Set your preferred height */
+    overflow-y: auto;
+    padding-right: 10px;
+    scroll-behavior: smooth;
+}
+
+#available-donations-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+#available-donations-container::-webkit-scrollbar-thumb {
+    background-color: rgba(30, 144, 255, 0.6);
+    border-radius: 4px;
+}

@@ -1,0 +1,155 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+
+:root {
+    --primary-bg: #f5e9d7; /* Warm, soft background */
+    --text-color: #121212;
+    --overlay-bg: rgba(255, 255, 255, 0.9);
+    --accent-color: #d62929; /* Red accent */
+    --border-color: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Body Styling */
+body {
+    background: var(--primary-bg);
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+/* Navbar */
+.custom-navbar {
+    background: transparent;
+    padding: 20px 50px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.custom-navbar .navbar-brand {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.custom-navbar .nav-link {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-color);
+    margin: 0 15px;
+    position: relative;
+    transition: 0.3s ease-in-out;
+}
+
+.custom-navbar .nav-link:hover {
+    color: var(--accent-color);
+}
+
+.custom-navbar .nav-link::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    transition: width 0.3s;
+    margin-top: 5px;
+}
+
+.custom-navbar .nav-link:hover::after {
+    width: 100%;
+}
+html {
+    overflow-y: scroll;
+}
+
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+
+:root {
+    --primary-bg: #f5e9d7; /* Soft warm background */
+    --text-color: #121212;
+    --overlay-bg: rgba(255, 255, 255, 0.6); /* Semi-transparent white */
+    --accent-color: #d62929; /* Red accent */
+    --border-color: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Body Styling */
+body {
+    background: var(--primary-bg);
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+/* Contribution Form Container */
+.container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+    border-radius: 20px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2), -5px -5px 15px rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(20px); /* Glassmorphism effect */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: center;
+}
+
+/* Form Labels */
+.container .form-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* Form Inputs */
+.container .form-control, 
+.container .form-select {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.1), inset -2px -2px 6px rgba(255, 255, 255, 0.7);
+    transition: 0.3s ease-in-out;
+}
+
+.container .form-control:focus, 
+.container .form-select:focus {
+    outline: none;
+    box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.2), inset -1px -1px 4px rgba(255, 255, 255, 0.8);
+}
+
+/* Submit Button */
+.btn-submit {
+    background: var(--accent-color);
+    color: white;
+    font-weight: bold;
+    border-radius: 25px;
+    padding: 12px 20px;
+    border: none;
+    width: 100%;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2), -3px -3px 10px rgba(255, 255, 255, 0.6);
+    transition: 0.3s ease-in-out;
+}
+
+.btn-submit:hover {
+    background: #b12222;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3), -2px -2px 8px rgba(255, 255, 255, 0.7);
+}
+
+/* Loading and Success Messages */
+#loading-animation, #payment-success, #thank-you-text {
+    display: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 20px;
+}

@@ -1,0 +1,100 @@
+Step 1: Open CMD and Navigate to MySQL Folder
+Open Command Prompt.
+Navigate to XAMPP’s MySQL bin directory:
+bash
+Copy
+Edit
+cd C:\xampp\mysql\bin
+🛠️ Step 2: Access MySQL (MariaDB)
+bash
+Copy
+Edit
+mysql -u root -p
+It will ask for a password. If no password is set, just press Enter.
+If you see this, you’re inside:
+css
+Copy
+Edit
+Welcome to the MariaDB monitor...
+MariaDB [(none)]>
+🛠️ Step 3: Select Your Database (food_share)
+sql
+Copy
+Edit
+USE food_share;
+Output:
+
+nginx
+Copy
+Edit
+Database changed
+🛠️ Step 4: Enable Event Scheduler
+sql
+Copy
+Edit
+SET GLOBAL event_scheduler = ON;
+Output:
+
+graphql
+Copy
+Edit
+Query OK, 0 rows affected (0.000 sec)
+🛠️ Step 5: Create the Auto-Delete Event (Deletes food after 2 hours)
+sql
+Copy
+Edit
+CREATE EVENT IF NOT EXISTS delete_old_food_donations
+ON SCHEDULE EVERY 5 MINUTE
+DO
+DELETE FROM food_donations WHERE created_at < NOW() - INTERVAL 2 HOUR;
+Output:
+
+graphql
+Copy
+Edit
+Query OK, 0 rows affected (0.000 sec)
+🛠️ Step 6: Verify That the Event Is Created
+sql
+Copy
+Edit
+SHOW EVENTS;
+Output (Example):
+
+sql
+Copy
+Edit
++--------------------------+------------+---------------+---------------------+...
+| delete_old_food_donations| food_share | EVERY 5 MINUTE| ...
++--------------------------+------------+---------------+---------------------+
+🛠️ Step 7: Exit MySQL
+sql
+Copy
+Edit
+exit;
+Or press Ctrl + D.
+
+✅ Final Full Set of Commands to Copy into CMD
+bash
+Copy
+Edit
+cd C:\xampp\mysql\bin
+mysql -u root -p
+(Enter password or press Enter if blank)
+
+sql
+Copy
+Edit
+USE food_share;
+SET GLOBAL event_scheduler = ON;
+
+CREATE EVENT IF NOT EXISTS delete_old_food_donations
+ON SCHEDULE EVERY 5 MINUTE
+DO
+DELETE FROM food_donations WHERE created_at < NOW() - INTERVAL 2 HOUR;
+
+SHOW EVENTS;
+
+exit;
+✅ After Running This:
+Every 5 minutes, expired food (older than 2 hours) will be deleted automatically.
+No need for PHP or cron jobs. This works in the background.

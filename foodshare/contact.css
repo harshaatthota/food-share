@@ -1,0 +1,128 @@
+
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+
+:root {
+    --primary-bg: #f5e9d7; /* Warm, soft background */
+    --text-color: #121212;
+    --overlay-bg: rgba(255, 255, 255, 0.9);
+    --accent-color: #d62929; /* Red accent */
+    --border-color: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Body Styling */
+body {
+    background: var(--primary-bg);
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+/* Navbar */
+.custom-navbar {
+    background: transparent;
+    padding: 20px 50px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.custom-navbar .navbar-brand {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.custom-navbar .nav-link {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-color);
+    margin: 0 15px;
+    position: relative;
+    transition: 0.3s ease-in-out;
+}
+
+.custom-navbar .nav-link:hover {
+    color: var(--accent-color);
+}
+
+.custom-navbar .nav-link::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    transition: width 0.3s;
+    margin-top: 5px;
+}
+
+.custom-navbar .nav-link:hover::after {
+    width: 100%;
+}
+html {
+    overflow-y: scroll;
+}
+
+/* Glassmorphic Contact Info Section */
+.contact-info {
+    width: 90%;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.2); /* Glass effect */
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: left;
+    margin: 30px auto; /* Centers the entire box */
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center; /* Centers content inside */
+    padding-left: 0; /* Remove left padding */
+    padding-right: 0;
+}
+
+/* Contact Info Items */
+.contact-info .info-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.1rem;
+    color: #000; /* Black text */
+    font-weight: 600;
+    width: 100%;
+    justify-content: center; /* Centers text & icon */
+}
+
+/* Icons */
+.contact-info i {
+    font-size: 1.5rem;
+    color: #000; /* Black icons */
+    width: 30px; /* Ensures all icons are aligned */
+    text-align: center;
+}
+
+/* Links */
+.contact-info a {
+    text-decoration: none;
+    font-weight: 600;
+    color: #000; /* Black text */
+    transition: 0.3s;
+}
+
+.contact-info a:hover {
+    color: #333; /* Slightly darker on hover */
+}
+
+/* Hover Effect */
+.contact-info:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}

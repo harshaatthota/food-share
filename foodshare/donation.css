@@ -1,0 +1,189 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+
+:root {
+    --primary-bg: #f5e9d7; /* Warm, soft background */
+    --text-color: #121212;
+    --overlay-bg: rgba(255, 255, 255, 0.9);
+    --accent-color: #d62929; /* Red accent */
+    --border-color: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Body Styling */
+body {
+    background: var(--primary-bg);
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+/* Navbar */
+.custom-navbar {
+    background: transparent;
+    padding: 20px 50px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.custom-navbar .navbar-brand {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.custom-navbar .nav-link {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-color);
+    margin: 0 15px;
+    position: relative;
+    transition: 0.3s ease-in-out;
+}
+
+.custom-navbar .nav-link:hover {
+    color: var(--accent-color);
+}
+
+.custom-navbar .nav-link::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    transition: width 0.3s;
+    margin-top: 5px;
+}
+
+.custom-navbar .nav-link:hover::after {
+    width: 100%;
+}
+html {
+    overflow-y: scroll;
+}
+/* Table Container - Glassmorphic Effect */
+.table-container {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2), -10px -10px 20px rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+    margin: auto;
+    max-width: 95%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Table */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Table Header */
+.table thead {
+    background: linear-gradient(135deg, rgba(214, 41, 41, 0.8), rgba(166, 29, 29, 0.8));
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.table th {
+    padding: 18px;
+    text-align: center;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+/* Table Rows */
+.table td {
+    padding: 14px;
+    text-align: center;
+    font-size: 15px;
+    color: #2c2c2c;
+    font-weight: 500;
+}
+
+/* Alternating Row Colors - Soft Transparency */
+.table tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.1), inset -5px -5px 10px rgba(255, 255, 255, 0.3);
+}
+
+.table tbody tr:nth-child(odd) {
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.1), inset -5px -5px 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Hover Effect - Text Turns White */
+.table tbody tr:hover {
+    background: rgba(214, 41, 41, 0.2);
+    box-shadow: 0 4px 12px rgba(255, 99, 71, 0.2);
+    transform: scale(1.01);
+    transition: all 0.3s ease-in-out;
+    color: white;
+}
+
+/* Ensure text color reverts back */
+.table tbody tr:hover td {
+    color: white;
+}
+
+/* Default text color */
+.table tbody tr td {
+    transition: color 0.3s ease-in-out;
+    color: #2c2c2c;
+}
+
+
+/* Card Number Masking */
+.masked-card {
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+/* Responsive Table */
+@media screen and (max-width: 768px) {
+    .table-container {
+        padding: 15px;
+    }
+
+    .table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .table th, .table td {
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+
+/* Sticky Footer */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex: 1;
+}
+
+footer {
+    background: #101010;
+    color: white;
+    text-align: center;
+    padding: 18px 0;
+    margin-top: auto;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}

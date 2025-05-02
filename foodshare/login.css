@@ -1,0 +1,150 @@
+
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+
+:root {
+    --primary-bg: #f5e9d7; /* Warm, soft background */
+    --text-color: #121212;
+    --overlay-bg: rgba(255, 255, 255, 0.9);
+    --accent-color: #d62929; /* Red accent */
+    --border-color: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Body Styling */
+body {
+    background: var(--primary-bg);
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+/* Navbar */
+.custom-navbar {
+    background: transparent;
+    padding: 20px 50px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.custom-navbar .navbar-brand {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.custom-navbar .nav-link {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-color);
+    margin: 0 15px;
+    position: relative;
+    transition: 0.3s ease-in-out;
+}
+
+.custom-navbar .nav-link:hover {
+    color: var(--accent-color);
+}
+
+.custom-navbar .nav-link::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    transition: width 0.3s;
+    margin-top: 5px;
+}
+
+.custom-navbar .nav-link:hover::after {
+    width: 100%;
+}
+html {
+    overflow-y: scroll;
+}
+
+/* Center the login container */
+.login-container {
+    background: var(--primary-bg);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 15px 15px 30px #b8a89a, -15px -15px 30px #ffffff; /* Darker shadow */
+    width: 350px;
+    position: absolute;
+    top: 55%; /* Moved slightly down */
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/* Darker shadow effect for input fields */
+.login-container input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    background: var(--primary-bg);
+    box-shadow: inset 6px 6px 12px #b8a89a, inset -6px -6px 12px #ffffff;
+    outline: none;
+    text-align: center;
+    transition: 0.3s;
+}
+
+/* Forgot Password Link - add spacing */
+.login-container a {
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 25px; /* Increased space below */
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s ease-in-out;
+}
+
+.login-container a:hover {
+    text-decoration: underline;
+}
+
+/* Darker shadow effect for button */
+.login-container button {
+    width: 100%;
+    padding: 12px;
+    background: var(--primary-bg);
+    color: var(--accent-color);
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 8px 8px 16px #b8a89a, -8px -8px 16px #ffffff;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Active effect for button */
+.login-container button:active {
+    box-shadow: inset 8px 8px 16px #b8a89a, inset -8px -8px 16px #ffffff;
+}
+
+/* Spacing above 'Register here' */
+.login-container p {
+    margin-top: 25px; /* Increased space */
+    font-size: 0.9rem;
+}
+/* Register here link - change color to green */
+.login-container p a {
+    color: green; /* Change to green */
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+}
+
+.login-container p a:hover {
+    text-decoration: underline;
+}
